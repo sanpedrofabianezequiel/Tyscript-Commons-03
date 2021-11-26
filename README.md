@@ -1,3 +1,3 @@
-# Lazy Loading
+# Full Loading
 
 
