@@ -1,6 +1,7 @@
 //import { LazyPage1,LazyPage2,LazyPage3 } from "../01-lazyload/pages";
 
-import { lazy } from "react"
+import { lazy } from "react";
+import { NoLazt } from '../01-lazyload/pages/NoLazt';
 
 type IJSXComponent = ()=> JSX.Element;
 
@@ -12,27 +13,24 @@ interface Route {
     name:string;
 }
 
-const lazy1= lazy(()=> import(/*webpackChunkName: "LazyPage1"*/'../01-lazyload/pages/LazyPage1'));//In this case we need write de Default export not in index;
-const lazy2= lazy(()=> import(/*webpackChunkName: "LazyPage2"*/'../01-lazyload/pages/LazyPage2'));
-const lazy3= lazy(()=> import(/*webpackChunkName: "LazyPage3"*/'../01-lazyload/pages/LazyPage3'));
+const LazyLayout= lazy(()=> import(/*webpackChunkName: "LazyLayout"*/'../01-lazyload/layout/LazyLayout'));//In this case we need write de Default export not in index;
 
+
+//In this case we have lazy loading and full loading
+//this comodin allow that all children has the PATH /LAZYLOAD
+
+//IMPORTANTE EL COMODIN SE USA EN EL PATH
 export const routes:Route [] = [
     {
-        to:'/lazy1',
-        path:'lazy1',
-        Component:lazy1,
-        name:'lazy-1'
+        to:'/lazyload',
+        path:'/lazyload/*',
+        Component:LazyLayout,
+        name:'LazyLayout - Dash'
     },
     {
-        to:'/lazy2',
-        path:'lazy2',
-        Component:lazy2,
-        name:'lazy-2'
-    },
-    {
-        to:'/lazy3',
-        path:'lazy3',
-        Component:lazy3,
-        name:'lazy-3'
+        to:'/no-lazy',
+        path:'no-lazy',
+        Component:NoLazt,
+        name:'No Lazy'
     }
 ]
